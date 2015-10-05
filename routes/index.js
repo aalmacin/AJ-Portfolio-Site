@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var nodemailer = require('nodemailer');
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Home' , subtitle: 'Welcome to my site.', active: 'home'});
 });
@@ -18,7 +17,7 @@ router.get('/services', function(req, res, next) {
 router.get('/contactMe', function(req, res, next) {
         var message = "";
         if(req.query && req.query.status) {
-                var message = (req.query.status === 'success') ? "Successfully sent an email!" : "There was an error with the email sent.";
+          var message = (req.query.status === 'success') ? "Successfully sent an email!" : "There was an error with the email sent.";
         }
         res.render('contactMe', { title: 'Contact Me' , subtitle: '', active: 'contactMe' , message: message, success: (req.query.status === 'success')});
 });

@@ -2,17 +2,13 @@
 <html>
         <head>
                 <title><%= title %> | Aldrin Jerome Almacin</title>
-                <link rel='stylesheet' href='/lib/bootstrap/dist/css/bootstrap.min.css' />
+                <link rel='stylesheet' href='lib/bootstrap/dist/css/bootstrap.min.css' />
+                <link rel='stylesheet' href='stylesheets/style.css' />
         </head>
         <body>
-                <div class="jumbotron">
-                        <h1><%= title %></h1>
-                        <p>Welcome to <%= title %></p>
-                </div>
-                        <ul>
-                                <li><a href="/">Home</a></li>
-                                <li><a href="/aboutMe">About Me</a></li>
-                                <li><a href="/projects">Projects</a></li>
-                                <li><a href="/services">Services</a></li>
-                                <li><a href="/contactMe">Contact Me</a></li>
-                        </ul>
+                <% include nav %>
+                <div class="container-fluid">
+                        <div class="mainHead row jumbotron">
+                                <h1><%= title %></h1>
+                                <p><%= subtitle %></p>
+                        </div>

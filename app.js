@@ -1,3 +1,8 @@
+/*
+  Main application express configuration file. All application settings are set up here.
+
+  Author: AJ Almacin
+*/
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -41,6 +46,9 @@ if (app.get('env') === 'development') {
     res.status(err.status || 500);
     res.render('error', {
       message: err.message,
+      title: err.message,
+      subtitle: err.message,
+      active: err.message,
       error: err
     });
   });
@@ -52,6 +60,9 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
+    title: err.message,
+      subtitle: err.message,
+    active: err.message,
     error: {}
   });
 });

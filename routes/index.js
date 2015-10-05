@@ -1,7 +1,14 @@
+/*
+  Main application route file. All the application http routes are setup here.
+  Used nodemailer module to send and email to the site user.
+
+  Author: AJ Almacin
+*/
 var express = require('express');
 var router = express.Router();
 var nodemailer = require('nodemailer');
 
+// Setup which pages to render depending on which page the user goes to
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Home' , subtitle: 'Welcome to my site.', active: 'home'});
 });
@@ -21,6 +28,9 @@ router.get('/contactMe', function(req, res, next) {
         }
         res.render('contactMe', { title: 'Contact Me' , subtitle: '', active: 'contactMe' , message: message, success: (req.query.status === 'success')});
 });
+
+// Setup the email account and the message to be sent to me from the user.
+// You can use the username and login to confirm that the mail is working.
 router.post('/contactEmail', function(req, res, next) {
         var transporter = nodemailer.createTransport({
                 service: 'Gmail',

@@ -14,8 +14,13 @@ router.get('/projects', function(req, res, next) {
 router.get('/services', function(req, res, next) {
   res.render('services', { title: 'Services' , subtitle: '', active: 'services' });
 });
-router.get('/contactMe', function(req, res, next) {
-  res.render('contactMe', { title: 'Contact Me' , subtitle: '', active: 'contactMe' });
-});
+router.route('/contactMe')
+        .get(function(req, res, next) {
+                res.render('contactMe', { title: 'Contact Me' , subtitle: '', active: 'contactMe' });
+        })
+        .post(function(req, res, next) {
+                console.log("BOBOY");
+                res.redirect('/contactMe?status=success');
+        });
 
 module.exports = router;

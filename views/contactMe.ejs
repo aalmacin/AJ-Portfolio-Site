@@ -1,2 +1,26 @@
-<p>Contact Me View</p>
+<h2>Email</h2>
+<p>Send me an email and I'll try to respond as soon as I can</p>
+<div>
+        <form action="/contactMe" method="POST" role="form" name="contact">
+                <fieldset>
+                        <label for="name">Name :</label>
+                        <input class="form-control" name="name" type="text" required placeholder="Full name">
+                        <br>
+                </fieldset>
+                <fieldset>
+                        <label for="email">Email :</label>
+                        <input class="form-control" name="email" type="email" required placeholder="Email">
+                        <br>
+                </fieldset>
+                <fieldset>
+                        <label for="message">Message :</label>
+                        <textarea rows="4" cols="50" name="message" required class="form-control"></textarea>
+                        <br>
+                </fieldset>
+                <fieldset>
+                        <input class="form-control btn-primary btn" type="submit" value="Send Email">
+                        <br>
+                </fieldset>
+        </form>
+</div>
 

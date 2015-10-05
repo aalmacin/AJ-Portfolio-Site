@@ -1,7 +1,12 @@
 <h2>Email</h2>
 <p>Send me an email and I'll try to respond as soon as I can</p>
+<% if(message.length > 0) {%>
+        <div class="alert <% if (success) { %>alert-success<% } else { %>alert-danger<% } %>">
+                <p><%= message %></p>
+        </div>
+<% } %>
 <div>
-        <form action="/contactMe" method="POST" role="form" name="contact">
+        <form action="/contactEmail" method="POST" role="form" name="contact">
                 <fieldset>
                         <label for="name">Name :</label>
                         <input class="form-control" name="name" type="text" required placeholder="Full name">

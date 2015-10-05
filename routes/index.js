@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var nodemailer = require('nodemailer');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -14,13 +15,35 @@ router.get('/projects', function(req, res, next) {
 router.get('/services', function(req, res, next) {
   res.render('services', { title: 'Services' , subtitle: '', active: 'services' });
 });
-router.route('/contactMe')
-        .get(function(req, res, next) {
-                res.render('contactMe', { title: 'Contact Me' , subtitle: '', active: 'contactMe' });
-        })
-        .post(function(req, res, next) {
-                console.log("BOBOY");
+router.get('/contactMe', function(req, res, next) {
+        var message = "";
+        if(req.query && req.query.status) {
+                var message = (req.query.status === 'success') ? "Successfully sent an email!" : "There was an error with the email sent.";
+        }
+        res.render('contactMe', { title: 'Contact Me' , subtitle: '', active: 'contactMe' , message: message, success: (req.query.status === 'success')});
+});
+router.post('/contactEmail', function(req, res, next) {
+        var transporter = nodemailer.createTransport({
+                service: 'Gmail',
+                auth: {
+                        user: 'almacinsitetest@gmail.com',
+                        pass: 'userpass22'
+                }
+        });
+
+        var mailOptions = {
+                replyTo: req.body.email,
+                from: req.body.email,
+                to: 'almacinsitetest@gmail.com',
+                subject: 'Portfolio Site: Message from ' + req.body.name + ' Datetime: ' + Date.now(),
+                text: req.body.message
+        };
+        transporter.sendMail(mailOptions, function(error, info) {
+                if(error) {
+                        res.redirect('/contactMe?status=fail');
+                }
                 res.redirect('/contactMe?status=success');
         });
+});
 
 module.exports = router;
